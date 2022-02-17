@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
-//import Hello from './hello/Hello'
-import Login from './hello/Login';
-import Bmi from './hello/Bmi';
-import Calc from './hello/Calc'
+import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login/><Bmi/><Calc/>
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>  
   </React.StrictMode>,
   document.getElementById('root')
 );

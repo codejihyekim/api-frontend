@@ -1,26 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import Bmi from './components/Bmi';
+import Calc from './components/Calc';
+import Grade from './components/Grade';
+import Login from './components/Login';
+import Home from './pages/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        리액트 배우기
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App(){
+  return useRoutes([
+    {path: "/", element:<Home />},
+    {path: "bmi", element:<Bmi />},
+    {path: "calc", element:<Calc />},
+    {path: "grade", element:<Grade />},
+    {path: "login", element:<Login />}
+  ]);
 }
 
-export default App;
