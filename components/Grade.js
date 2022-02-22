@@ -1,24 +1,36 @@
-import React from 'react'
-import Layout from '../containers/Layout'
-export default function Grade (){
-    return <Layout><h1>성적표폼</h1>
-    <form>
-        
-        <div>
-            <label><b>name</b></label>
-            <input/><br/>
-            <label><b>국어점수</b></label>
-            <input/><br/>
-            <label><b>영어점수</b></label>
-            <input/><br/>
-            <label><b>수학점수</b></label>
-            <input/><br/>
-            <button>확인</button>
-        </div>
-        <div>
-            <button>Calcel</button>
-        </div>
+import React, {useState} from "react"
+import Layout from "../containers/Layout"
+export default function Grade(){
+    const [name, setName] = useState("")
+    const [korscore, setKorscore] = useState(0)
+    const [engscore, setEngscore] = useState(0)
+    const [mathscore, setMathscore] = useState(0)
+    const [result, setResult] = useState(0)
 
-    </form>
-    </Layout>
+    const Grade =()=>{
+        let name = (document.getElementById('name')).value
+        let korscore = (document.getElementById('korscore')).value
+        let engscore = (document.getElementById('engscore')).value
+        let mathscore = (document.getElementById('mathscore')).value
+        setName(name)
+        setKorscore(korscore)
+        setEngscore(engscore)
+        setMathscore(mathscore)
+        setResult(Number(name), Number(korscore), Number(engscore), Number(mathscore))
+    }
+
+    return (<Layout><h1>Grade 폼</h1>
+    <div>
+        <lable><b>name</b></lable>
+        <input id="name"/><br/>
+        <lable><b>korscore</b></lable>
+        <input id="korscore"/><br/>
+        <lable><b>engscore</b></lable>
+        <input id="engscore"/><br/>
+        <label><b>mathscore</b></label>
+        <input id="mathscore"/><br/>
+        <button onClick={()=>{Grade()}}>확인</button>
+        <div>결과: {name} {korscore} {engscore} {mathscore} </div>
+    </div>
+    </Layout>)
 }

@@ -1,10 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Footer from "./Footer";
-import Header from "./Header";
-
-export default function Layout ({children}){
-    return (<div>
+import React from "react"
+import styled from "styled-components"
+import Footer from "./Footer"
+import Header from "./Header"
+export default function Layout({children}){
+    return(<div>
         <Table>
             <thead>
             <Tr>
@@ -20,8 +19,9 @@ export default function Layout ({children}){
             </Tr>
             </tbody>
         </Table>
-    </div>)
-} 
+        </div>
+    )
+}
 const Table = styled.table`
     border: 1px solid black;
     width: 1000px;
