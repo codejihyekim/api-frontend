@@ -1,9 +1,11 @@
 import React, {useState} from "react"
+import { memberLogin } from "../api";
 import Layout from "../containers/Layout"
 export default function Login(){
     
     const [inputs, setInputs] = useState({})
-    const {name, password} = inputs;
+    const [result, setResult] = useState('')
+    const {name, password, userid} = inputs;
 
     const handleChange =(e)=>{
         e.preventDefault()
@@ -21,8 +23,12 @@ export default function Login(){
     }
     const handleClick = (e) =>{
         e.preventDefault()
-        const loginRequest = {name, password}
-        alert(`사용자이름: ${JSON.stringify(loginRequest)}`)
+        const loginRequest = {name, password, userid}
+        memberLogin(loginRequest)
+        .then(res => {
+            setResult(res.data)
+        })
+        .catch( err => console.log(`에러발생 : ${err}`))
         
     }
 
@@ -34,7 +40,7 @@ export default function Login(){
         <input name="name" onChange={handleChange}/><br/>
         <label><b>password</b></label>
         <input name="password" onChange={handleChange}/><br/>
-        <button onClick={handleClick}>확인</button>
+        <button onClick={handleClick}>Login</button>
     </div>
     <label >
         <input />remember me
@@ -43,6 +49,7 @@ export default function Login(){
         <button>Cancel</button>
         <span>Forgot<a>password?</a></span>
     </div>
+    <div>결과: {result} </div>
     </form>
     </Layout>)
 }

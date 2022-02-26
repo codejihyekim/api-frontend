@@ -1,9 +1,11 @@
-import axios from "axios";
+
 import React, {useState} from "react"
+import { memberCalc } from "../api";
 import Layout from "../containers/Layout"
 export default function Calc(){
     
     const [inputs, setInputs] = useState({})
+    const [result, setResult] = useState('')
     const {num1, num2, opcode} = inputs;
 
     const handleChange =(e)=>{
@@ -22,8 +24,7 @@ export default function Calc(){
     }
     const handleClick = (e) => {
         e.preventDefault()
-        const calcRequest = {num1, num2, opcode}
-        alert(`사용자이름: ${JSON.stringify(calcRequest)}`)
+        memberCalc({num1, num2, opcode}).then(res => setResult(res.data)).catch(err => console.log(`에러발생 : ${err}`))
         /*
         axios.get('http://localhost:8080/member/calc/1/+/2')
         .then((res)=>{
@@ -38,20 +39,21 @@ export default function Calc(){
             <label><b>number1</b></label>
             <input name="num1" type="" onChange={handleChange}/><br/>
             <label><b>opcode</b></label>
-            <select name="opcode" type="" onChange={handleChange}>
-                <option value="">+</option>
-                <option value="">-</option>
-                <option value="">*</option>
-                <option value="">/</option>
-                <option value="">%</option>
+            <select name="opcode" onChange={handleChange}>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
             </select>
             <br/>
             <label><b>number2</b></label>
             <input name="num2" type="" onChange={handleChange}/><br/>
-            <button onClick={handleClick}>더하기 실행</button>
-            
+            <button onClick={handleClick}>전송</button>
         </div>
+       
         </form>
+        <div>결과: {result}</div>
         </Layout>
 
     )
