@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { memberLogin } from "../api";
-import Layout from "../containers/Layout"
+import { Layout } from "../containers/index";
 export default function Login(){
     
     const [inputs, setInputs] = useState({})
@@ -25,9 +25,7 @@ export default function Login(){
         e.preventDefault()
         const loginRequest = {name, password, userid}
         memberLogin(loginRequest)
-        .then(res => {
-            setResult(res.data)
-        })
+        .then(res => setResult(res.data))
         .catch( err => console.log(`에러발생 : ${err}`))
         
     }
@@ -38,6 +36,8 @@ export default function Login(){
     <div>
         <label><b>name</b></label>
         <input name="name" onChange={handleChange}/><br/>
+        <label><b>userid</b></label>
+        <input name="userid" onChange={handleChange}/><br/>
         <label><b>password</b></label>
         <input name="password" onChange={handleChange}/><br/>
         <button onClick={handleClick}>Login</button>

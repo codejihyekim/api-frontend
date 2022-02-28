@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Footer from "./Footer"
-import Header from "./Header"
+import { Footer, Header } from "./containers/index"
 export default function Layout({children}){
     return(<div>
         <Table>
